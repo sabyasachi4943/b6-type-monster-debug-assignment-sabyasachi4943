@@ -117,7 +117,7 @@ const start = () => {
       display.classList.remove("inactive");
 
       clearInterval(startCountdown);
-      startTime = new Date().getTime();
+      startTime = Math.round(new Date().getTime());
     }
     count--;
   }, 1000);
@@ -130,9 +130,10 @@ startBtn.addEventListener("click", start);
 displayHistory();
 
 // Show typing time spent
+// Math.ceil(Date.now() / 1000)
 setInterval(() => {
-  const currentTime = new Date().getTime();
-  const timeSpent = (currentTime - startTime) / 1000;
+  const currentTime = Math.round(new Date().getTime());
+  const timeSpent = Math.round((currentTime - startTime) / 1000);
 
 
   document.getElementById("show-time").innerHTML = `${startTime ? timeSpent : 0} seconds`;
